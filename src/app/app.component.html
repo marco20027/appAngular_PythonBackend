@@ -64,6 +64,9 @@
                     </div>
                 </div>
             </div>
+            <button class="primary" onclick="window.dialog.showModal();">Open Dialog</button>
+
+
         </section>
         <!-- Services section-->
         <section class="bg-light" id="services">
@@ -98,7 +101,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let data of valueData">
-                      <td scope="col"><button type="button" class="btn btn-danger" onclick="document.getElementById('id01').style.display='block'">Modifica</button></td>
+                      <td scope="col"><button class="btn btn-primary" onclick="window.dialog.showModal();">Visualizza</button></td>
                       <td scope="col">{{data.Entity}}</td>
                       <td scope="col">{{data.Isin}}</td>
                       <td scope="col">{{data.InstrumentName}}</td>
@@ -145,58 +148,180 @@
             </div>
           </div>
           <!-- Button trigger modal -->
-
-          <div id="id01" class="w3-modal">
-            <div class="w3-modal-content">
-              <div class="w3-container">
-                <span onclick="document.getElementById('id01').style.display='none'" class="w3-closebtn">&times;</span>
-                <h3>Dettaglio</h3>
-                <table class="table table-bordered">
+              <dialog id="dialog">
+                <h2>Dettaglio.</h2>
+                <table class="table-resp">
                   <thead>
                     <tr>
-                      <th scope="col" *ngFor="let item of keyDataModal">{{item}}</th>
+                      <th>Title</th>
+                      <th>Value</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr *ngIf="valueModal1 == valueData">
-                      <td *ngFor="let item of valueModal1" >{{item[0]}}</td>
+                  <tbody class="tableStye">
+                    <tr >
+                      <td>Entity</td>
+                      <td *ngFor="let item of valueModal2" contenteditable="true">{{item.Entity}}</td>
                     </tr>
-                    <tr *ngIf="valueModal2 == valueData">
-                      <td *ngFor="let item of valueModal2" >{{item}}</td>
-                    </tr><tr *ngIf="valueModal3 == valueData">
-                      <td *ngFor="let item of valueModal3" >{{item}}</td>
-                    </tr><tr *ngIf="valueModal4 == valueData">
-                      <td *ngFor="let item of valueModal4" >{{item}}</td>
-                    </tr><tr *ngIf="valueModal5 == valueData">
-                      <td *ngFor="let item of valueModal5" >{{item}}</td>
-                    </tr><tr *ngIf="valueModal6 == valueData">
-                      <td *ngFor="let item of valueModal6" >{{item}}</td>
-                    </tr><tr *ngIf="valueModal7 == valueData">
-                      <td *ngFor="let item of valueModal7" >{{item}}</td>
-                    </tr><tr *ngIf="valueModal8 == valueData">
-                      <td *ngFor="let item of valueModal8" >{{item}}</td>
-                    </tr><tr *ngIf="valueModal9 == valueData">
-                      <td *ngFor="let item of valueModal9" >{{item}}</td>
+                    <tr>
+                    <td>Isin</td>
+                    <td *ngFor="let item of valueModal2" contenteditable="true">{{item.Isin}}</td>
                     </tr>
+                    <tr>
+                      <td>InstrumentName</td>
+                      <td *ngFor="let item of valueModal2" contenteditable="true">{{item.InstrumentName}}</td>
+                    </tr>
+                    <tr>
+                      <td>MaturityDate</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.MaturityDate}}</td>
+                    </tr>
+                    <tr>
+                      <td>IssuerName</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.IssuerName}}</td>
+                    </tr>
+                    <tr>
+                      <td>IssuerCode</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.IssuerCode}}</td>
+                    </tr> 
+                    <tr>
+                      <td>Currency</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.Currency}}</td>
+                    </tr>
+                    <tr>
+                      <td>MarketCode</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.MarketCode}}</td>
+                    </tr>
+                    <tr>
+                      <td>AgentName</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.AgentName}}</td>
+                    </tr>
+                    <tr>
+                      <td>SettledQty</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.SettledQty}}</td>
+                    </tr>
+                    <tr>
+                      <td>LatestCleanPrice</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.LatestCleanPrice}}</td>
+                    </tr>
+                    <tr>
+                      <td>PriceSource</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.PriceSource}}</td>
+                    </tr>
+                    <tr>
+                      <td>SettledValue</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.SettledValue}}</td>
+                    </tr>
+                    <tr>
+                      <td>Current6A6Value</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.Current6A6Value}}</td>
+                    </tr>
+                    <tr>
+                      <td>BVALScore</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.BVALScore}}</td>
+                    </tr>
+                    <tr>
+                      <td>StandardAndPoors</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.StandardAndPoors}}</td>
+                    </tr>
+                    <tr>
+                      <td>Fitch</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.Fitch}}</td>
+                    </tr>
+                    <tr>
+                      <td>EligibileBCE</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.EligibileBCE}}</td>
+                    </tr>
+                    <tr>
+                      <td>HaircutBCE</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.HaircutBCE}}</td>
+                    </tr>
+                    <tr>
+                      <td>EligibileFED</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.EligibileFED}}</td>
+                    </tr>
+                    <tr>
+                      <td>HaircutFED</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.HaircutFED}}</td>
+                    </tr>
+                    <tr>
+                      <td>EligibileHKM</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.EligibileHKM}}</td>
+                    </tr>
+                    <tr>
+                      <td>HaircutHKM</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.HaircutHKM}}</td>
+                    </tr>
+                    <tr>
+                      <td>EligibileBOE</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.EligibileBOE}}</td>
+                    </tr>
+                    <tr>
+                      <td>HaircutBOE</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.HaircutBOE}}</td>
+                    </tr>
+                    <tr>
+                      <td>Marketability</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.Marketability}}</td>
+                    </tr>
+                    <tr>
+                      <td>LiquidityClass</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.LiquidityClass}}</td>
+                    </tr>
+                    <tr>
+                      <td>LiquidityClassStressHaircut</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.LiquidityClassStressHaircut}}</td>
+                    </tr>
+                    <tr>
+                      <td>LiquidityClassStressHaircut</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.LiquidityClassStressHaircut}}</td>
+                    </tr>
+                    <tr>
+                      <td>LiquidityClassPolicyHaircut</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.LiquidityClassPolicyHaircut}}</td>
+                    </tr>
+                    <tr>
+                      <td>LiquidityTypeName</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.LiquidityTypeName}}</td>
+                    </tr>
+                    <tr>
+                      <td>SecurityTypeName</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.SecurityTypeName}}</td>
+                    </tr>
+                    <tr>
+                      <td>BBGLiquidityClassDate</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.BBGLiquidityClassDate}}</td>
+                    </tr>
+                    <tr>
+                      <td>BBGLiquidityClass</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.BBGLiquidityClass}}</td>
+                    </tr>
+                    <tr>
+                      <td>LRSNarrative</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.LRSNarrative}}</td>
+                    </tr>
+                    <tr>
+                      <td>FactorType</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.FactorType}}</td>
+                    </tr>
+                    <tr>
+                      <td>BloombergCode</td>
+                      <td *ngFor="let item of valueModal2"contenteditable="true">{{item.BloombergCode}}</td>
+                    </tr>
+                    
+                    
                   </tbody>
                 </table>
-              </div>
-              </div>
-            </div>
-            <button type="button" (click)="addData()">test</button>
-        
-<!-- Button trigger modal -->
-
-
-<!-- Modal -->
-
-
+                
+                <button (click)="exportJson()" download="valueModal2.json" href="javascript:;">create json</button>
+                <button onclick="window.dialog.close();" aria-label="close" class="x">❌</button>
+              </dialog>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
         </footer>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!-- MDB -->
 <script
 type="text/javascript"

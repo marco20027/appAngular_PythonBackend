@@ -10,14 +10,16 @@ import { JsonEditComponent } from './json-edit/json-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
-    JsonEditComponent
+    JsonEditComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,   
+
   ],
   providers: [],
   bootstrap: [AppComponent]
