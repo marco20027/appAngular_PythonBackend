@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from './userser.service';
 import { Route, Router } from '@angular/router';
-import { ModalDismissReasons, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbAlertConfig, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +27,7 @@ export class AppComponent {
   listaValue :any =  []
   listaValueTable:any = []
 
-constructor (private user: UserService,private router:Router){
+constructor (private user: UserService,private router:Router,alertConfig: NgbAlertConfig){
   
 }
 getApi(){
@@ -57,11 +57,7 @@ getApi(){
 goToPage(pageName:string):void{
   window.open(`${pageName}`, '_blank')
 }
-addData() {
-  this.user.addData().subscribe(data => {
-    console.log("add", data)
-  })
-}
+
 
 
 exportJson() {
@@ -74,7 +70,51 @@ exportJson() {
     this.valueModal2.href = "valueModal2:application/json;charset=utf-8," + json
   }) 
 }
+saveTable(){
+  this.user.getApi().subscribe(data => {
+    if(data == data){
+    this.arrayData = data
+    this.valueModal2 = [this.arrayData[1]]
+    console.log(this.valueModal2)
+    let json = JSON.stringify(this.valueModal2)
+    console.log(json)
+    alert("json salvato !")
+    }
+    else{
+      alert("error")
+    }
+  })
+
+  
+}
+saveJson(){
+  this.user.getApi().subscribe(data => {
+    this.arrayData = data
+    this.valueModal2 = [this.arrayData[1]]
+    console.log(this.valueModal2)
+    let json = JSON.stringify(this.valueModal2)
+    console.log(json)
+ 
+    const myBtn = document.querySelector('#myBtn');
+    const datas = {
+    name: 'jsonFile',
+    url: json,
+    };
+    const jsonFile = new Blob([JSON.stringify(datas)]);
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(jsonFile);
+    downloadLink.download = 'demo.json';
+    downloadLink.click();
+    console.log(jsonFile)
+}) 
+
+
 
 }
-
+uploadJson(){
+ this.user.addData().subscribe(data =>{
+  console.log(data)
+ })
+}
+}
 
