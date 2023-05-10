@@ -106,15 +106,19 @@ saveJson(){
     downloadLink.download = 'demo.json';
     downloadLink.click();
     console.log(jsonFile)
+    
 }) 
-
-
-
 }
 uploadJson(){
  this.user.addData().subscribe(data =>{
   console.log(data)
+  if(data){
+    alert("json aggiunto al database !")
+  }else{
+    alert("Error!")
+  }
  })
 }
+
 }
 
