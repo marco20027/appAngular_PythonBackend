@@ -101,7 +101,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let data of valueData">
-                      <td scope="col"><button class="btn btn-primary" onclick="window.dialog.showModal();">Visualizza</button></td>
+                      <td scope="col"><button class="btn btn-primary" onclick="window.dialog.showModal();" (click)="test('item')">Visualizza</button></td>
                       <td scope="col">{{data.Entity}}</td>
                       <td scope="col">{{data.Isin}}</td>
                       <td scope="col">{{data.InstrumentName}}</td>
@@ -163,154 +163,154 @@
                       <th>Value</th>
                     </tr>
                   </thead>
-                  <tbody class="tableStye">
+                  <tbody class="tableStye" >
                     <tr >
                       <td>Entity</td>
-                      <td id="save" *ngFor="let item of valueModal2" contenteditable="true">{{item.Entity}}</td>
+                      <td id="save" *ngFor="let item of valueData" contenteditable="true">{{item.Entity}}</td>
                     </tr>
                     <tr>
                     <td>Isin</td>
-                    <td id="save" *ngFor="let item of valueModal2" contenteditable="true">{{item.Isin}}</td>
+                    <td id="save" *ngFor="let item of valueData" contenteditable="true">{{item.Isin}}</td>
                     </tr>
                     <tr>
                       <td>InstrumentName</td>
-                      <td id="save" *ngFor="let item of valueModal2" contenteditable="true">{{item.InstrumentName}}</td>
+                      <td id="save" *ngFor="let item of valueData" contenteditable="true">{{item.InstrumentName}}</td>
                     </tr>
                     <tr>
                       <td>MaturityDate</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.MaturityDate}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.MaturityDate}}</td>
                     </tr>
                     <tr>
                       <td>IssuerName</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.IssuerName}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.IssuerName}}</td>
                     </tr>
                     <tr>
                       <td>IssuerCode</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.IssuerCode}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.IssuerCode}}</td>
                     </tr> 
                     <tr>
                       <td>Currency</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.Currency}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.Currency}}</td>
                     </tr>
                     <tr>
                       <td>MarketCode</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.MarketCode}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.MarketCode}}</td>
                     </tr>
                     <tr>
                       <td>AgentName</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.AgentName}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.AgentName}}</td>
                     </tr>
                     <tr>
                       <td>SettledQty</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.SettledQty}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.SettledQty}}</td>
                     </tr>
                     <tr>
                       <td>LatestCleanPrice</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.LatestCleanPrice}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.LatestCleanPrice}}</td>
                     </tr>
                     <tr>
                       <td>PriceSource</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.PriceSource}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.PriceSource}}</td>
                     </tr>
                     <tr>
                       <td>SettledValue</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.SettledValue}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.SettledValue}}</td>
                     </tr>
                     <tr>
                       <td>Current6A6Value</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.Current6A6Value}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.Current6A6Value}}</td>
                     </tr>
                     <tr>
                       <td>BVALScore</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.BVALScore}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.BVALScore}}</td>
                     </tr>
                     <tr>
                       <td>StandardAndPoors</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.StandardAndPoors}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.StandardAndPoors}}</td>
                     </tr>
                     <tr>
                       <td>Fitch</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.Fitch}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.Fitch}}</td>
                     </tr>
                     <tr>
                       <td>EligibileBCE</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.EligibileBCE}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.EligibileBCE}}</td>
                     </tr>
                     <tr>
                       <td>HaircutBCE</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.HaircutBCE}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.HaircutBCE}}</td>
                     </tr>
                     <tr>
                       <td>EligibileFED</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.EligibileFED}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.EligibileFED}}</td>
                     </tr>
                     <tr>
                       <td>HaircutFED</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.HaircutFED}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.HaircutFED}}</td>
                     </tr>
                     <tr>
                       <td>EligibileHKM</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.EligibileHKM}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.EligibileHKM}}</td>
                     </tr>
                     <tr>
                       <td>HaircutHKM</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.HaircutHKM}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.HaircutHKM}}</td>
                     </tr>
                     <tr>
                       <td>EligibileBOE</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.EligibileBOE}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.EligibileBOE}}</td>
                     </tr>
                     <tr>
                       <td>HaircutBOE</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.HaircutBOE}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.HaircutBOE}}</td>
                     </tr>
                     <tr>
                       <td>Marketability</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.Marketability}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.Marketability}}</td>
                     </tr>
                     <tr>
                       <td>LiquidityClass</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.LiquidityClass}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.LiquidityClass}}</td>
                     </tr>
                     <tr>
                       <td>LiquidityClassStressHaircut</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.LiquidityClassStressHaircut}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.LiquidityClassStressHaircut}}</td>
                     </tr>
                     <tr>
                       <td>LiquidityClassStressHaircut</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.LiquidityClassStressHaircut}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.LiquidityClassStressHaircut}}</td>
                     </tr>
                     <tr>
                       <td>LiquidityClassPolicyHaircut</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.LiquidityClassPolicyHaircut}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.LiquidityClassPolicyHaircut}}</td>
                     </tr>
                     <tr>
                       <td>LiquidityTypeName</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.LiquidityTypeName}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.LiquidityTypeName}}</td>
                     </tr>
                     <tr>
                       <td >SecurityTypeName</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.SecurityTypeName}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.SecurityTypeName}}</td>
                     </tr>
                     <tr>
                       <td>BBGLiquidityClassDate</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.BBGLiquidityClassDate}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.BBGLiquidityClassDate}}</td>
                     </tr>
                     <tr>
                       <td>BBGLiquidityClass</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.BBGLiquidityClass}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.BBGLiquidityClass}}</td>
                     </tr>
                     <tr>
                       <td>LRSNarrative</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.LRSNarrative}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.LRSNarrative}}</td>
                     </tr>
                     <tr>
                       <td>FactorType</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.FactorType}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.FactorType}}</td>
                     </tr>
                     <tr>
                       <td>BloombergCode</td>
-                      <td id="save" *ngFor="let item of valueModal2"contenteditable="true">{{item.BloombergCode}}</td>
+                      <td id="save" *ngFor="let item of valueData"contenteditable="true">{{item.BloombergCode}}</td>
                     </tr>
                     
                     

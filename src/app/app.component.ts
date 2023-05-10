@@ -13,6 +13,7 @@ export class AppComponent {
   arrayData:any
   keyData:any
   valueData: any
+  listValue :any
   dialog: any;
   keyDataModal:any
   valueModal1:any
@@ -34,6 +35,7 @@ getApi(){
   let url ="http://localhost:8000/returnJSON"
   this.user.getApi().subscribe(data => {
     this.arrayData = data
+    console.log(this.arrayData)
    this.listaValueTable.push(Object.values(this.arrayData[0]))
     let keys = Object.keys(this.arrayData[0])
     this.keyData = keys
@@ -41,17 +43,11 @@ getApi(){
     let keyModal = Object.keys(this.arrayData[1])
     this.keyDataModal = keyModal
     this.valueData = Object.values(this.arrayData)
-    this.valueModal1 = Object.values(this.arrayData[0])
-    this.valueModal2 = [this.arrayData[1]]
-    console.log(this.valueModal2)
-    this.valueModal3 = Object.values(this.arrayData[2])
-    this.valueModal4 = Object.values(this.arrayData[3])
-    this.valueModal5 = Object.values(this.arrayData[4])
-    this.valueModal6 = Object.values(this.arrayData[5])
-    this.valueModal7 = Object.values(this.arrayData[6])
-    this.valueModal8 = Object.values(this.arrayData[7])
-    this.valueModal9 = Object.values(this.arrayData[8])
-    this.listaValue.push(this.valueModal1,this.valueModal2,this.valueModal3,this.valueModal4,this.valueModal5,this.valueModal6,this.valueModal7,this.valueModal8,this.valueModal9)
+    console.log(this.valueData)
+    for (let i in this.valueData){
+      this.listValue = ([this.valueData[i]])
+    }
+   
   })
 }
 goToPage(pageName:string):void{
@@ -74,9 +70,10 @@ saveTable(){
   this.user.getApi().subscribe(data => {
     if(data == data){
     this.arrayData = data
-    this.valueModal2 = [this.arrayData[1]]
-    console.log(this.valueModal2)
-    let json = JSON.stringify(this.valueModal2)
+    for (let i in this.valueData){
+      this.valueData = (this.valueData[i])
+    }
+    let json = JSON.stringify(this.valueData)
     console.log(json)
     alert("json salvato !")
     }
@@ -87,15 +84,21 @@ saveTable(){
 
   
 }
+test(item:any){
+  if(this.arrayData[0] == this.valueData)
+  console.log(this.arrayData[0])
+   
+}
 saveJson(){
   this.user.getApi().subscribe(data => {
     this.arrayData = data
-    this.valueModal2 = [this.arrayData[1]]
-    console.log(this.valueModal2)
-    let json = JSON.stringify(this.valueModal2)
+    for (let i in this.valueData){
+      if(this.valueData == this.valueData[0])
+      this.valueData = ([this.valueData[i]])
+    }
+    let json = JSON.stringify(this.valueData)
     console.log(json)
- 
-    const myBtn = document.querySelector('#myBtn');
+    //const myBtn = document.querySelector('#myBtn');
     const datas = {
     name: 'jsonFile',
     url: json,
