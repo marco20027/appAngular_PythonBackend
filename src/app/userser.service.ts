@@ -30,4 +30,9 @@ export class UserService {
         return this.http.post(url,body,httpOptions)
 
         }
+    getId(){
+        let url = "http://localhost:8000/returnJSON"
+        console.log(url)
+        return this.http.get(url)
+    }
 }

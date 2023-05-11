@@ -13,40 +13,34 @@ export class AppComponent {
   arrayData:any
   keyData:any
   valueData: any
-  listValue :any
+  listValue :any 
+  listValue1 :any 
+  listValue2 :any 
   dialog: any;
   keyDataModal:any
   valueModal1:any
   valueModal2:any
   valueModal3:any
-  valueModal4:any
-  valueModal5:any
-  valueModal6:any
-  valueModal7:any
-  valueModal8:any
-  valueModal9:any
+
   listaValue :any =  []
   listaValueTable:any = []
+  listValueModal:any= []
+  listValueModal2: any = [];
+  detailData: any;
 
 constructor (private user: UserService,private router:Router,alertConfig: NgbAlertConfig){
   
 }
-getApi(){
+onClickGetApi(){
   let url ="http://localhost:8000/returnJSON"
   this.user.getApi().subscribe(data => {
     this.arrayData = data
-    console.log(this.arrayData)
-   this.listaValueTable.push(Object.values(this.arrayData[0]))
     let keys = Object.keys(this.arrayData[0])
     this.keyData = keys
-    console.log(this.keyData[1])
     let keyModal = Object.keys(this.arrayData[1])
     this.keyDataModal = keyModal
     this.valueData = Object.values(this.arrayData)
-    console.log(this.valueData)
-    for (let i in this.valueData){
-      this.listValue = ([this.valueData[i]])
-    }
+    //this.test(this.valueData)
    
   })
 }
@@ -70,10 +64,10 @@ saveTable(){
   this.user.getApi().subscribe(data => {
     if(data == data){
     this.arrayData = data
-    for (let i in this.valueData){
-      this.valueData = (this.valueData[i])
-    }
-    let json = JSON.stringify(this.valueData)
+    /*for (let i in this.valueData){
+      this.valueData = this.valueData[i]
+    }*/
+    let json = JSON.stringify(this.listValue)
     console.log(json)
     alert("json salvato !")
     }
@@ -84,11 +78,26 @@ saveTable(){
 
   
 }
-test(item:any){
-  if(this.arrayData[0] == this.valueData)
-  console.log(this.arrayData[0])
-   
+listaModal : any
+listIndex: any = []
+onClickDetail(item:any){
+  console.log(this.detailData);
+  console.log(this.listValueModal);
+  this.detailData = item;
+  /*
+  this.user.getId().subscribe(data => {
+      this.listValue = data
+      for (item in this.listValue){
+        console.log(item)
+        this.listValueModal = [this.listValue[item]]
+
+
+        }      
+  })
+  */
+
 }
+
 saveJson(){
   this.user.getApi().subscribe(data => {
     this.arrayData = data
