@@ -55,19 +55,16 @@ exportJson() {
     this.arrayData = data
     this.valueModal2 = [this.arrayData[1]]
     console.log(this.valueModal2)
-    let json = JSON.stringify(this.valueModal2)
+    let json = JSON.stringify(this.detailData)
     console.log(json)
     this.valueModal2.href = "valueModal2:application/json;charset=utf-8," + json
   }) 
 }
-saveTable(){
+saveTable(item:any){
   this.user.getApi().subscribe(data => {
     if(data == data){
     this.arrayData = data
-    /*for (let i in this.valueData){
-      this.valueData = this.valueData[i]
-    }*/
-    let json = JSON.stringify(this.listValue)
+    let json = JSON.stringify(item)
     console.log(json)
     alert("json salvato !")
     }
@@ -76,36 +73,19 @@ saveTable(){
     }
   })
 
-  
 }
-listaModal : any
-listIndex: any = []
 onClickDetail(item:any){
-  console.log(this.detailData);
-  console.log(this.listValueModal);
   this.detailData = item;
-  /*
-  this.user.getId().subscribe(data => {
-      this.listValue = data
-      for (item in this.listValue){
-        console.log(item)
-        this.listValueModal = [this.listValue[item]]
-
-
-        }      
-  })
-  */
-
 }
 
-saveJson(){
+saveJson(item:any){
   this.user.getApi().subscribe(data => {
     this.arrayData = data
     for (let i in this.valueData){
       if(this.valueData == this.valueData[0])
       this.valueData = ([this.valueData[i]])
     }
-    let json = JSON.stringify(this.valueData)
+    let json = JSON.stringify(item)
     console.log(json)
     //const myBtn = document.querySelector('#myBtn');
     const datas = {
