@@ -25,7 +25,7 @@ export class UserService {
     }
     addData(){
         let url = "http://localhost:8000/updateJson"
-        const body = {title: "angular post request"}
+        const body = {title: "post"}
         console.log(this.http.post(url,body,httpOptions))
         return this.http.post(url,body,httpOptions)
 

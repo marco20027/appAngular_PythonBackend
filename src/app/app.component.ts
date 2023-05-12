@@ -87,7 +87,6 @@ saveJson(item:any){
     }
     let json = JSON.stringify(item)
     console.log(json)
-    //const myBtn = document.querySelector('#myBtn');
     const datas = {
     name: 'jsonFile',
     url: json,
