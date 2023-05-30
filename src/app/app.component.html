@@ -64,7 +64,6 @@
                     </div>
                 </div>
             </div>
-            <button class="primary" onclick="window.dialog.showModal();">Open Dialog</button>
 
 
         </section>
@@ -101,7 +100,10 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let data of valueData">
-                      <td scope="col"><button class="btn btn-primary" onclick="window.dialog.showModal();" (click)="onClickDetail(data)">Visualizza</button></td>
+                      <td scope="col"><button class="btn btn-primary" onclick="window.dialog.showModal();" (click)="onClickDetail(data)">Visualizza</button>
+                      <br><br><button id="showDialog" class="btn btn-danger" (click)="deleteModal(data)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                      </svg></button></td>
                       <td scope="col">{{data.Entity}}</td>
                       <td scope="col">{{data.Isin}}</td>
                       <td scope="col">{{data.InstrumentName}}</td>
@@ -118,7 +120,6 @@
                       <td scope="col">{{data.Current6A6Value}}</td>
                       <td scope="col">{{data.BVALScore}}</td>
                       <td scope="col">{{data.Moodys}}</td>
-                      <td scope="col">{{data.BVALScore}}</td>
                       <td scope="col">{{data.StandardAndPoors}}</td>
                       <td scope="col">{{data.Fitch}}</td>
                       <td scope="col">{{data.EligibileBCE}}</td>
@@ -155,7 +156,8 @@
                   <path fill-rule="evenodd" d="M3.5 10a.5.5 0 0 1-.5-.5v-8a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 0 0 1h2A1.5 1.5 0 0 0 14 9.5v-8A1.5 1.5 0 0 0 12.5 0h-9A1.5 1.5 0 0 0 2 1.5v8A1.5 1.5 0 0 0 3.5 11h2a.5.5 0 0 0 0-1h-2z"/>
                   <path fill-rule="evenodd" d="M7.646 15.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 14.293V5.5a.5.5 0 0 0-1 0v8.793l-2.146-2.147a.5.5 0 0 0-.708.708l3 3z"/>
                 </svg> Salva </button>
-              <br><br>
+               
+              <br><br> <br>
                 <table *ngIf="detailData != null" id="tableModal" class="table-resp" >
                   <thead>
                     <tr>
@@ -165,165 +167,192 @@
                   </thead>
                   <tbody class="tableStye" >
                     <tr >
+                      <td>id</td>
+                      <td id="saveId" contenteditable="true" value="detailData._id">{{detailData._id}}</td>
+                    </tr>
+                    <tr >
                       <td>Entity</td>
-                      <td id="save" contenteditable="true">{{detailData.Entity}}</td>
+                      <td id="save" contenteditable="true" value="detailData.Entity">{{detailData.Entity}}</td>
                     </tr>
                     <tr>
                     <td>Isin</td>
-                    <td id="save" contenteditable="true">{{detailData.Isin}}</td>
+                    <td id="save2" contenteditable="true" value = "detailData.Isin">{{detailData.Isin}}</td>
                     </tr>
                     <tr>
                       <td>InstrumentName</td>
-                      <td id="save"  contenteditable="true">{{detailData.InstrumentName}}</td>
+                      <td id="save3"  contenteditable="true" value="detailData.InstrumentName">{{detailData.InstrumentName}}</td>
                     </tr>
                     <tr>
                       <td>MaturityDate</td>
-                      <td id="save" contenteditable="true">{{detailData.MaturityDate}}</td>
+                      <td id="save4" contenteditable="true" value="detailData.MaturityDate">{{detailData.MaturityDate}}</td>
                     </tr>
                     <tr>
                       <td>IssuerName</td>
-                      <td id="save" contenteditable="true">{{detailData.IssuerName}}</td>
+                      <td id="save5" contenteditable="true"value="detailData.IssuerName ">{{detailData.IssuerName}}</td>
                     </tr>
                     <tr>
                       <td>IssuerCode</td>
-                      <td id="save"contenteditable="true">{{detailData.IssuerCode}}</td>
+                      <td id="save6"contenteditable="true" value="detailData.IssuerCode ">{{detailData.IssuerCode}}</td>
                     </tr> 
                     <tr>
                       <td>Currency</td>
-                      <td id="save" contenteditable="true">{{detailData.Currency}}</td>
+                      <td id="save7" contenteditable="true" value="detailData.Currency">{{detailData.Currency}}</td>
                     </tr>
                     <tr>
                       <td>MarketCode</td>
-                      <td id="save" contenteditable="true">{{detailData.MarketCode}}</td>
+                      <td id="save8" contenteditable="true" value="detailData.MarketCode">{{detailData.MarketCode}}</td>
                     </tr>
                     <tr>
                       <td>AgentName</td>
-                      <td id="save" contenteditable="true">{{detailData.AgentName}}</td>
+                      <td id="save9" contenteditable="true" value="detailData.AgentName">{{detailData.AgentName}}</td>
                     </tr>
                     <tr>
                       <td>SettledQty</td>
-                      <td id="save" contenteditable="true">{{detailData.SettledQty}}</td>
+                      <td id="save10" contenteditable="true" value = "detailData.SettledQty">{{detailData.SettledQty}}</td>
                     </tr>
                     <tr>
                       <td>LatestCleanPrice</td>
-                      <td id="save"contenteditable="true">{{detailData.LatestCleanPrice}}</td>
+                      <td id="save11"contenteditable="true"value = "detailData.LatestCleanPrice">{{detailData.LatestCleanPrice}}</td>
+                    </tr>
+                    <tr>
+                      <td>LatestDirtyPrice</td>
+                      <td id="save12"contenteditable="true"value = "detailData.LatestDirtyPrice">{{detailData.LatestDirtyPrice}}</td>
                     </tr>
                     <tr>
                       <td>PriceSource</td>
-                      <td id="save" contenteditable="true">{{detailData.PriceSource}}</td>
+                      <td id="save13" contenteditable="true"value = "detailData.PriceSource">{{detailData.PriceSource}}</td>
                     </tr>
                     <tr>
                       <td>SettledValue</td>
-                      <td id="save" contenteditable="true">{{detailData.SettledValue}}</td>
+                      <td id="save14" contenteditable="true"value = "detailData.SettledValue">{{detailData.SettledValue}}</td>
                     </tr>
                     <tr>
                       <td>Current6A6Value</td>
-                      <td id="save" contenteditable="true">{{detailData.Current6A6Value}}</td>
+                      <td id="save15" contenteditable="true"value = "detailData.Current6A6Value">{{detailData.Current6A6Value}}</td>
                     </tr>
                     <tr>
                       <td>BVALScore</td>
-                      <td id="save" xcontenteditable="true">{{detailData.BVALScore}}</td>
+                      <td id="save16" xcontenteditable="true"value = "detailData.BVALScore">{{detailData.BVALScore}}</td>
+                    </tr>
+                    <tr>
+                      <td>Moodys</td>
+                      <td id="save17" xcontenteditable="true"value = "detailData.Moodys">{{detailData.Moodys}}</td>
                     </tr>
                     <tr>
                       <td>StandardAndPoors</td>
-                      <td id="save" contenteditable="true">{{detailData.StandardAndPoors}}</td>
+                      <td id="save18" contenteditable="true"value = "detailData.StandardAndPoors">{{detailData.StandardAndPoors}}</td>
                     </tr>
                     <tr>
                       <td>Fitch</td>
-                      <td id="save"contenteditable="true">{{detailData.Fitch}}</td>
+                      <td id="save19"contenteditable="true"value = "detailData.Fitch">{{detailData.Fitch}}</td>
                     </tr>
                     <tr>
                       <td>EligibileBCE</td>
-                      <td id="save" contenteditable="true">{{detailData.EligibileBCE}}</td>
+                      <td id="save20" contenteditable="true"value = "detailData.EligibileBCE">{{detailData.EligibileBCE}}</td>
                     </tr>
                     <tr>
                       <td>HaircutBCE</td>
-                      <td id="save" contenteditable="true">{{detailData.HaircutBCE}}</td>
+                      <td id="save21" contenteditable="true"value = "detailData.HaircutBCE">{{detailData.HaircutBCE}}</td>
                     </tr>
                     <tr>
                       <td>EligibileFED</td>
-                      <td id="save" contenteditable="true">{{detailData.EligibileFED}}</td>
+                      <td id="save22" contenteditable="true"value = "detailData.EligibileFED">{{detailData.EligibileFED}}</td>
                     </tr>
                     <tr>
                       <td>HaircutFED</td>
-                      <td id="save" xcontenteditable="true">{{detailData.HaircutFED}}</td>
+                      <td id="save23" xcontenteditable="true"value = "detailData.HaircutFED">{{detailData.HaircutFED}}</td>
                     </tr>
                     <tr>
                       <td>EligibileHKM</td>
-                      <td id="save" contenteditable="true">{{detailData.EligibileHKM}}</td>
+                      <td id="save24" contenteditable="true"value = "detailData.EligibileHKM">{{detailData.EligibileHKM}}</td>
                     </tr>
                     <tr>
                       <td>HaircutHKM</td>
-                      <td id="save" contenteditable="true">{{detailData.HaircutHKM}}</td>
+                      <td id="save25" contenteditable="true"value = "detailData.HaircutHKM">{{detailData.HaircutHKM}}</td>
                     </tr>
                     <tr>
                       <td>EligibileBOE</td>
-                      <td id="save" contenteditable="true">{{detailData.EligibileBOE}}</td>
+                      <td id="save26" contenteditable="true"value = "detailData.EligibileBOE">{{detailData.EligibileBOE}}</td>
                     </tr>
                     <tr>
                       <td>HaircutBOE</td>
-                      <td id="save" contenteditable="true">{{detailData.HaircutBOE}}</td>
+                      <td id="save27" contenteditable="true"value = "detailData.HaircutBOE">{{detailData.HaircutBOE}}</td>
                     </tr>
                     <tr>
                       <td>Marketability</td>
-                      <td id="save" contenteditable="true">{{detailData.Marketability}}</td>
+                      <td id="save28" contenteditable="true"value = "detailData.Marketability">{{detailData.Marketability}}</td>
                     </tr>
                     <tr>
                       <td>LiquidityClass</td>
-                      <td id="save" contenteditable="true">{{detailData.LiquidityClass}}</td>
+                      <td id="save29" contenteditable="true"value = "detailData.LiquidityClass">{{detailData.LiquidityClass}}</td>
                     </tr>
                     <tr>
-                      <td>LiquidityClassStressHaircut</td>
-                      <td id="save" contenteditable="true">{{detailData.LiquidityClassStressHaircut}}</td>
+                      <td>LiquidityClassHaircut</td>
+                      <td id="save30" contenteditable="true"value = "detailData.LiquidityClassHaircut">{{detailData.LiquidityClassHaircut}}</td>
                     </tr>
+                    
                     <tr>
                       <td>LiquidityClassStressHaircut</td>
-                      <td id="save" contenteditable="true">{{detailData.LiquidityClassStressHaircut}}</td>
+                      <td id="save31" contenteditable="true"value = "detailData.LiquidityClassStressHaircut">{{detailData.LiquidityClassStressHaircut}}</td>
                     </tr>
                     <tr>
                       <td>LiquidityClassPolicyHaircut</td>
-                      <td id="save" contenteditable="true">{{detailData.LiquidityClassPolicyHaircut}}</td>
+                      <td id="save32" contenteditable="true"value = "detailData.LiquidityClassPolicyHaircut">{{detailData.LiquidityClassPolicyHaircut}}</td>
                     </tr>
                     <tr>
                       <td>LiquidityTypeName</td>
-                      <td id="save" contenteditable="true">{{detailData.LiquidityTypeName}}</td>
+                      <td id="save33" contenteditable="true"value = "detailData.LiquidityTypeName">{{detailData.LiquidityTypeName}}</td>
                     </tr>
                     <tr>
                       <td >SecurityTypeName</td>
-                      <td id="save" contenteditable="true">{{detailData.SecurityTypeName}}</td>
+                      <td id="save34" contenteditable="true"value = "detailData.SecurityTypeName">{{detailData.SecurityTypeName}}</td>
                     </tr>
                     <tr>
                       <td>BBGLiquidityClassDate</td>
-                      <td id="save" contenteditable="true">{{detailData.BBGLiquidityClassDate}}</td>
+                      <td id="save35" contenteditable="true"value = "detailData.BBGLiquidityClassDate">{{detailData.BBGLiquidityClassDate}}</td>
                     </tr>
                     <tr>
                       <td>BBGLiquidityClass</td>
-                      <td id="save" contenteditable="true">{{detailData.BBGLiquidityClass}}</td>
+                      <td id="save36" contenteditable="true"value = "detailData.BBGLiquidityClass">{{detailData.BBGLiquidityClass}}</td>
                     </tr>
                     <tr>
                       <td>LRSNarrative</td>
-                      <td id="save" contenteditable="true">{{detailData.LRSNarrative}}</td>
+                      <td id="save37" contenteditable="true"value = "detailData.SettledQty">{{detailData.SettledQty}}</td>
                     </tr>
                     <tr>
                       <td>FactorType</td>
-                      <td id="save" contenteditable="true">{{detailData.FactorType}}</td>
+                      <td id="save38" contenteditable="true"value = "detailData.FactorType">{{detailData.FactorType}}</td>
                     </tr>
                     <tr>
                       <td>BloombergCode</td>
-                      <td id="save" contenteditable="true">{{detailData.BloombergCode}}</td>
+                      <td id="save39" contenteditable="true"value = "detailData.BloombergCode">{{detailData.BloombergCode}}</td>
                     </tr>
                     
                     
                   </tbody>
                 </table>
                 
-
+                <div *ngIf="alert" id="alertSuccess" class="alert alert-success alert-dismissible fade show"  role="alert" >
+                  {{alertMessage}}
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
                 <br>
                 <input  type="button"  id="myBtn" value="Scarica JSON" class="form-control" (click)="saveJson(detailData)" >
                 <br>
-                <div id="liveAlertPlaceholder"></div>
-                <input  type="button"  id="liveAlertPlaceholder" value="uploadJson" class="form-control" (click)="uploadJson()">
+                <input  type="button"  id="myBtn" value="Download CSV" class="form-control" (click)="downloadCsv(detailData)" >
+                <br>
+               
+                <input  type="button"  id="liveAlertPlaceholder" value="uploadJson" class="form-control" (click)="updateData(detailData)">
                 <button onclick="window.dialog.close();" aria-label="close" class="x">❌</button>
+              </dialog>
+
+              <dialog id="dialogDelete" >
+                <h3>Vuoi eliminare questa riga ? </h3>
+                <br><br>
+                <p>id : {{idDelete}}</p>
+                <bR><br>
+                  <input class="btn" value="SI"(click)="deleteDataApi(idDelete)"> <input id="noDelete" class="btn" arial-label="close" value="NO">
+                <button id="close" aria-label="close" class="x" >❌</button>
               </dialog>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
