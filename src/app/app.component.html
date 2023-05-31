@@ -107,6 +107,7 @@
                       <td scope="col">{{data.Entity}}</td>
                       <td scope="col">{{data.Isin}}</td>
                       <td scope="col">{{data.InstrumentName}}</td>
+                      <td scope="col">{{data.MaturityDate}}</td>
                       <td scope="col">{{data.IssuerName}}</td>
                       <td scope="col">{{data.IssuerCode}}</td>
                       <td scope="col">{{data.Currency}}</td>
@@ -117,19 +118,11 @@
                       <td scope="col">{{data.LatestDirtyPrice}}</td>
                       <td scope="col">{{data.PriceSource}}</td>
                       <td scope="col">{{data.SettledValue}}</td>
-                      <td scope="col">{{data.Current6A6Value}}</td>
                       <td scope="col">{{data.BVALScore}}</td>
-                      <td scope="col">{{data.Moodys}}</td>
-                      <td scope="col">{{data.StandardAndPoors}}</td>
-                      <td scope="col">{{data.Fitch}}</td>
                       <td scope="col">{{data.EligibileBCE}}</td>
-                      <td scope="col">{{data.HaircutBCE}}</td>
                       <td scope="col">{{data.EligibileFED}}</td>
-                      <td scope="col">{{data.HaircutFED}}</td>
                       <td scope="col">{{data.EligibileHKM}}</td>
-                      <td scope="col">{{data.HaircutHKM}}</td>
                       <td scope="col">{{data.EligibileBOE}}</td>
-                      <td scope="col">{{data.HaircutBOE}}</td>
                       <td scope="col">{{data.Marketability}}</td>
                       <td scope="col">{{data.LiquidityClass}}</td>
                       <td scope="col">{{data.LiquidityClassHaircut}}</td>
@@ -140,8 +133,10 @@
                       <td scope="col">{{data.BBGLiquidityClassDate}}</td>
                       <td scope="col">{{data.BBGLiquidityClass}}</td>
                       <td scope="col">{{data.LRSNarrative}}</td>
-                      <td scope="col">{{data.FactorType}}</td>
                       <td scope="col">{{data.BloombergCode}}</td>
+
+
+  
                     </tr>
                   </tbody>
                 </table>
@@ -330,7 +325,7 @@
                     
                     
                   </tbody>
-                </table>
+                </table><br>
                 
                 <div *ngIf="alert" id="alertSuccess" class="alert alert-success alert-dismissible fade show"  role="alert" >
                   {{alertMessage}}

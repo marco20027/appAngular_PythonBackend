@@ -66,20 +66,13 @@ open(content:any,id:any) {
 
 
 
-
-
 onClickGetApi(){
   this.user.viewList().subscribe(data => {
-    console.log(data)
     this.arrayData = data
-    console.log(this.arrayData)
     let keys = Object.keys(this.arrayDataEdit)
     this.keyData = keys
-    let keyModal = Object.keys(this.arrayData[1])
-    this.keyDataModal = keyModal
     this.valueData = Object.values(this.arrayData)
     console.log(this.valueData)
-    //this.test(this.valueData)
    
   })
 }
@@ -240,6 +233,8 @@ updateData(dataJson:any ){
 
 deleteDataApi (data:any) {
   this.user.deleteData(data).subscribe(data=>{
+
+    console.log(data)
     if(data != null){
       this.alertDelete = true
       setTimeout(() => {
