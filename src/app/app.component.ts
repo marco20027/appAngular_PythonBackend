@@ -351,7 +351,6 @@ insertData() {
     if(values[x]==""){
       console.log("error")
       this.alertinsert = true
-
     }else{
       this.alertinsertSuccess=true
       this.user.insertData(JsonEdit).subscribe(data=>{
