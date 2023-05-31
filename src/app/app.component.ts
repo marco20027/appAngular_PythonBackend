@@ -36,10 +36,32 @@ export class AppComponent {
   keyResult : any
   arrayDataEdit : any = mockJson
   alert : boolean = false
+  alertDelete :boolean = false
   alertMessage : string = 'dati aggiornati correttamente'
+  alertMessageDelete: string ='Eliminazione effettuata!'
   idDelete: any;
-constructor (private user: ApiService,private router:Router,alertConfig: NgbAlertConfig){ 
+  closeResult: any;
+  getDismissReason: any;
+constructor (private user: ApiService,private router:Router,alertConfig: NgbAlertConfig,private modalService: NgbModal){
+   
 }
+
+
+open(content:any,id:any) {
+  console.log(id)
+  this.detailData = id
+  this.modalService.open(content,{ ariaLabelledBy: 'modal-basic-title' }).result.then(
+    (result) => {
+      this.closeResult = `Closed with: ${result}`;
+    },
+    (reason) => {
+      console.log(reason)
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    },
+  );
+}
+
+
 onClickGetApi(){
   this.user.viewList().subscribe(data => {
     console.log(data)
@@ -226,11 +248,15 @@ deleteModal(id:any){
 }
 
 
-deleteDataApi (id:any) {
-  console.log(id._id)
-
-  this.user.deleteData(id).subscribe(data=>{
+deleteDataApi (data:any) {
+  console.log(data)
+  this.user.deleteData(data).subscribe(data=>{
     console.log(data)
+    if(data != null){
+      this.alertDelete = true
+    }else{
+      this.alertDelete = false
+    }
   })
 
 }

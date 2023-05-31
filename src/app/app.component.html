@@ -101,9 +101,10 @@
                   <tbody>
                     <tr *ngFor="let data of valueData">
                       <td scope="col"><button class="btn btn-primary" onclick="window.dialog.showModal();" (click)="onClickDetail(data)">Visualizza</button>
-                      <br><br><button id="showDialog" class="btn btn-danger" (click)="deleteModal(data)" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                      </svg></button></td>
+                      <br><br><button  class="btn btn-danger" (click)="open(content,data._id)" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                          <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                        </svg>Elimina</button></td>
                       <td scope="col">{{data.Entity}}</td>
                       <td scope="col">{{data.Isin}}</td>
                       <td scope="col">{{data.InstrumentName}}</td>
@@ -345,15 +346,37 @@
                 <input  type="button"  id="liveAlertPlaceholder" value="uploadJson" class="form-control" (click)="updateData(detailData)">
                 <button onclick="window.dialog.close();" aria-label="close" class="x">❌</button>
               </dialog>
+              <ng-template #content let-modal >
+                <div class="modal-header" *ngIf="detailData">
+                  <h4 class="modal-title" id="modal-basic-title">Eliminazione</h4><br><br>
+                  
+                  <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                </div><br><br>
+                <div *ngIf="alertDelete" id="alertDelete" class="alert alert-success alert-dismissible fade show"  role="alert" >
+                  {{alertMessageDelete}}
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                     <h3>Vuoi eliminare questo dato ?</h3>
+                     <br> <b>id : {{detailData}}</b>
+                      </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="deleteDataApi(detailData)">Si</button>
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">No</button>
 
-              <dialog id="dialogDelete" >
-                <h3>Vuoi eliminare questa riga ? </h3>
-                <br><br>
-                <p>id : {{idDelete}}</p>
-                <bR><br>
-                  <input class="btn" value="SI"(click)="deleteDataApi(idDelete)"> <input id="noDelete" class="btn" arial-label="close" value="NO">
-                <button id="close" aria-label="close" class="x" >❌</button>
-              </dialog>
+                </div>
+              </ng-template>
+            
+              
+              
+              <hr />
+              
+              <pre>{{ closeResult }}</pre>
+
+              
+
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>

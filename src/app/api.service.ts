@@ -40,10 +40,10 @@ export class ApiService {
         return this.http.get(url)
     }
 
-    deleteData(id:any){
-        const idDelete = id._id
+    deleteData(data:any){
+        const idDelete = data
         let url = "http://localhost:8000/deleteData/" + idDelete
-        const headers = { 'content-type': 'application/json'}
-        return this.http.post(url,id, {'headers':headers})
+        console.log(data)
+        return this.http.delete(url,idDelete)
     }
 }
