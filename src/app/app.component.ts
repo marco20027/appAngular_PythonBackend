@@ -37,18 +37,21 @@ export class AppComponent {
   arrayDataEdit : any = mockJson
   alert : boolean = false
   alertDelete :boolean = false
+  alertcopy : boolean = false
   alertMessage : string = 'dati aggiornati correttamente'
   alertMessageDelete: string ='Eliminazione effettuata!'
+  alertMessageCopy :string = 'Copiato !'
   idDelete: any;
   closeResult: any;
   getDismissReason: any;
+  keysModalInsert :any;
 constructor (private user: ApiService,private router:Router,alertConfig: NgbAlertConfig,private modalService: NgbModal){
    
 }
 
 
 open(content:any,id:any) {
-  console.log(id)
+    console.log(id)
   this.detailData = id
   this.modalService.open(content,{ ariaLabelledBy: 'modal-basic-title' }).result.then(
     (result) => {
@@ -58,8 +61,11 @@ open(content:any,id:any) {
       console.log(reason)
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     },
-  );
+  ); 
 }
+
+
+
 
 
 onClickGetApi(){
@@ -88,9 +94,10 @@ exportJson() {
     this.valueModal2.href = "valueModal2:application/json;charset=utf-8," + json
   }) 
 }
-saveTable(item:any){
-   console.log(item)
-
+copyClipborad(item:any){
+   let jsonCopy = item
+   let jsonString = JSON.stringify(jsonCopy)
+   navigator.clipboard.writeText(jsonString)
   }
 
 
@@ -108,7 +115,7 @@ onClickDetail(item:any){
   console.log("end onClickDetail")
 }
 
-saveJson(item:any){
+dowloadJson(item:any){
   this.user.viewList().subscribe(data => {
     this.arrayData = data
     for (let i in this.valueData){
@@ -228,65 +235,33 @@ updateData(dataJson:any ){
 
 }
 
-deleteModal(id:any){
-  this.idDelete= id
-  console.log(this.idDelete)
- 
-  const showButton:any = document.getElementById('showDialog');
-  const dialogDelete:any = document.getElementById('dialogDelete');
-  showButton.addEventListener('click', () => {
-    dialogDelete.showModal();
-  });
-  let buttonClose: any = document.getElementById('close');
-  buttonClose.addEventListener("click", () => {
-    dialogDelete.close();
-  })
-  let noDelete: any = document.getElementById('noDelete');
-  noDelete.addEventListener("click", () => {
-    dialogDelete.close();
-  })
-}
+
 
 
 deleteDataApi (data:any) {
-  console.log(data)
   this.user.deleteData(data).subscribe(data=>{
-    console.log(data)
     if(data != null){
       this.alertDelete = true
+      setTimeout(() => {
+        this.alertDelete = false
+      }, 3000);
     }else{
       this.alertDelete = false
     }
+    setTimeout(() => {
+      this.modalService.dismissAll()
+    }, 4000);
   })
 
 }
 
 
-
-editMode(button:any){//da finire
-  this.selector = document.getElementById("save");
-  this.selector.contentEditable = "true";
-  let x = null;
-  for (x in button.detailId[0]){
-    this.result = Object.values(button.detailId[0])
-    this.keyResult = Object.keys(button.detailId[0])
-    let jsonFinal = {"key": this.keyResult, "value":this.result }
-  }
-  alert(" sei in modalità modifica")
- 
-}
-
-  
-
-
 downloadCsv(item:any){
-  
   console.log(item)
   let fileName = "download.csv";
   const data = item;
   let csv = new Blob([data[0]], {
     type: "application/octet-stream",
-
     
   });
   console.log(csv)
@@ -298,7 +273,98 @@ downloadCsv(item:any){
   link.download = fileName;
   link.click();
 }
+
+insertData() {
+  let id:any = document.getElementById("id")?.textContent
+  let cell1 :any = document.getElementById("save1") ?.textContent
+  let cell:any = document.getElementById("save")?.textContent
+  let cell2 : any = document.getElementById("save2")?.textContent
+  let cell3 : any = document.getElementById("save3")?.textContent
+  let cell4 : any = document.getElementById("save4")?.textContent
+  let cell5 : any = document.getElementById("save5")?.textContent
+  let cell6 : any = document.getElementById("save6")?.textContent
+  let cell7 : any = document.getElementById("save7")?.textContent
+  let cell8 : any = document.getElementById("save8")?.textContent
+  let cell9 : any = document.getElementById("save9")?.textContent
+  let cell10 : any = document.getElementById("save10")?.textContent
+  let cell11 : any = document.getElementById("save11")?.textContent
+  let cell12 : any = document.getElementById("save12")?.textContent
+  let cell13 : any = document.getElementById("save13")?.textContent
+  let cell14 : any = document.getElementById("save14")?.textContent
+  let cell15 : any = document.getElementById("save15")?.textContent
+  let cell16 : any = document.getElementById("save16")?.textContent
+  let cell17 : any = document.getElementById("save17")?.textContent
+  let cell18 : any = document.getElementById("save18")?.textContent
+  let cell19 : any = document.getElementById("save19")?.textContent
+  let cell20 : any = document.getElementById("save20")?.textContent
+  let cell21 : any = document.getElementById("save21")?.textContent
+  let cell22 : any = document.getElementById("save22")?.textContent
+  let cell23 : any = document.getElementById("save23")?.textContent
+  let cell24 : any = document.getElementById("save24")?.textContent
+  let cell25 : any = document.getElementById("save25")?.textContent
+  let cell26 : any = document.getElementById("save26")?.textContent
+  let cell27 : any = document.getElementById("save27")?.textContent
+  let cell28 : any = document.getElementById("save28")?.textContent
+  let cell29 : any = document.getElementById("save29")?.textContent
+
+  
+ 
+  
+   let  JsonEdit  = {
+    "Entity": cell1,
+    "Isin": cell,
+    "InstrumentName": cell2,
+    "MaturityDate": cell3,
+    "IssuerName": cell4,
+    "IssuerCode": cell5,
+    "Currency": cell6,
+    "MarketCode": cell7,
+    "AgentName": cell8,
+    "SettledQty": cell9,
+    "LatestCleanPrice": cell10,
+    "LatestDirtyPrice": cell11,
+    "PriceSource": cell12,
+    "SettledValue": cell13,
+    "BVALScore": cell14,
+    "EligibileBCE": cell15,
+    "EligibileFED": cell16,
+    "EligibileHKM": cell17,
+    "EligibileBOE": cell18,
+    "Marketability": cell19,
+    "LiquidityClass": cell20,
+    "LiquidityClassHaircut": cell21,
+    "LiquidityClassStressHaircut": cell22,
+    "LiquidityClassPolicyHaircut": cell23,
+    "LiquidityTypeName": cell24,
+    "SecurityTypeName": cell25,
+    "BBGLiquidityClassDate":cell26,
+    "BBGLiquidityClass": cell27,
+    "LRSNarrative": cell28,
+    "BloombergCode": cell29
+
+  }
+  console.log(JsonEdit)
+  this.user.insertData(JsonEdit).subscribe(data=>{
+    console.log(data)
+  })
+
 }
+
+openModalInsert(data:any) {
+ this.keysModalInsert  = Object.keys(this.arrayDataEdit)
+this.modalService.open(data,{ ariaLabelledBy: 'modal-basic-title' }).result.then(
+  (result) => {
+    this.closeResult = `Closed with: ${result}`;
+  },
+  (reason) => {
+    console.log(reason)
+    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+  },
+); 
+}
+
+}
+
 
 
 

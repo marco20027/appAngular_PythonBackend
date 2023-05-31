@@ -1,5 +1,5 @@
 export const mockJson  = {
-        "Visualizza":"",
+        "Dettaglio":"",
         "Entity": "string",
         "Isin": "string",
         "InstrumentName": "string",
