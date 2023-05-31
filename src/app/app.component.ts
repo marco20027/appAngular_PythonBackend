@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { Route, Router } from '@angular/router';
 import { ModalDismissReasons, NgbAlertConfig, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { mockJson } from './mockJson';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -38,9 +39,13 @@ export class AppComponent {
   alert : boolean = false
   alertDelete :boolean = false
   alertcopy : boolean = false
+  alertinsert : boolean = false
+  alertinsertSuccess:boolean = false
+  alertMessageInsertSucces:string='dati inseriti correttamente !'
   alertMessage : string = 'dati aggiornati correttamente'
   alertMessageDelete: string ='Eliminazione effettuata!'
   alertMessageCopy :string = 'Copiato !'
+  alertMessageInsert: string = "Errore: compilare almeno un campo !"
   idDelete: any;
   closeResult: any;
   getDismissReason: any;
@@ -339,10 +344,23 @@ insertData() {
 
   }
   console.log(JsonEdit)
-  this.user.insertData(JsonEdit).subscribe(data=>{
-    console.log(data)
-  })
+  let values = Object.values(JsonEdit)
+  console.log(values)
+  for (let x in values){
+    console.log(values[x])
+    if(values[x]==""){
+      console.log("error")
+      this.alertinsert = true
 
+    }else{
+      this.alertinsertSuccess=true
+      this.user.insertData(JsonEdit).subscribe(data=>{
+        console.log(data)    
+      })
+    
+    }
+  }
+  
 }
 
 openModalInsert(data:any) {

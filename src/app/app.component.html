@@ -367,14 +367,28 @@
 
               <ng-template #contentInsert let-modal >
                 <div class="modal-header" >
-                  <h4 class="modal-title" id="modal-basic-title">Aggiungi</h4><br><br>
+                  <h4 class="modal-title" id="modal-basic-title">Aggiungi</h4>
+                  
+                  <br><br>
+
+                  
                   
                   <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
                 </div><br><br>
+
+                <div *ngIf="alertinsert" id="alerterror" class="alert alert-danger alert-dismissible fade show"  role="alert" >
+                  {{alertMessageInsert}}
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
+
+                <div *ngIf="alertinsertSuccess" id="alerterrorSuccces" class="alert alert-success alert-dismissible fade show"  role="alert" >
+                  {{alertMessageInsertSucces}}
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
                 
                 <div class="modal-body">
                     <div class="mb-3">
-                      <table  id="tableModal" class="table-resp" >
+                      <table  id="tableInsertdata" class="table-resp" >
                         <thead>
                           <tr>
                             <th>Title</th>
@@ -502,12 +516,12 @@
                           <tr>
                             <td>{{keysModalInsert[30]}}</td>
                             <td id="save29"  contenteditable="true"></td>
-                          </tr><br><br>
-                          <button class="btn" (click)="insertData()">Inserisci</button>
-
+                          </tr>
                         </tbody>
                       </table>
-                     <br>
+                     <br><br>
+                     <button class="btn btn-primary" (click)="insertData()">Inserisci</button>
+
                       </div>
                 </div>
               </ng-template>
