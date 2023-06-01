@@ -39,59 +39,30 @@
             <div class="container px-4 text-center">
                 <h1 class="fw-bolder">Benvenuti !</h1>
                 <p class="lead">Pagina web con chiamate python. </p>
-                <button class="btn btn-lg btn-light" (click) = "onClickGetApi()" >tabella JSON</button>
+                <!--<mat-spinner></mat-spinner>-->
                 <br><br>
                 <button class="btn btn-lg btn-secondary" (click)="openModalInsert(contentInsert)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square-fill" viewBox="0 0 16 16">
                   <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/>
                 </svg> Aggiungi </button><br><br>
+
             </div>
+
         </header>
-        <!-- About section-->
-        <section id="about">
-            <div class="container px-4">
-                <div class="row gx-4 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2>Cosa troverai su questa pagina:</h2>
-                        <p class="lead">Che cosa ho utilizzato per creare questa pagina:</p>
-                        <ul>
-                            <li>Frontend con il framework Angular. </li>
-                            <li>Per lo stile della pagina ho utilizzato <a href="https://getbootstrap.com/">bootstrap</a>. </li>
-                            <li>Ho utilizzato un linguaggio di backend : Python.</li>
-                            <li>Ho utilizzato un database non relazionale: MongoDB.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-
-        </section>
+    
         <!-- Services section-->
-        <section class="bg-light" id="services">
-            <div class="container px-4">
-                <div class="row gx-4 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2>Python:</h2>
-                        <p class="lead">Python è un linguaggio di programmazione di alto livello e di uso generale. La sua filosofia di progettazione enfatizza la leggibilità del codice con l'uso di un'indentazione significativa attraverso la regola dell'off-side..</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    
         <!-- Contact section-->
-        <section id="contact">
-            <div class="container px-4">
-                <div class="row gx-4 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2>MongoDB</h2>
-                        <p class="lead">MongoDB è un programma di database multipiattaforma orientato ai documenti, disponibile in formato sorgente. Classificato come database NoSQL, MongoDB utilizza documenti di tipo JSON con schemi opzionali..</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+     <section>
           <div class="container px-4">
             <div class="row gx-4 justify-content-center">
               <div class="col-lg-8">
                
                 <table class="table table-bordered" >
+                  <div class="text-center">
+                    <div *ngIf="spinner" class="spinner-border" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
                   <thead class="thead-dark" >
                     <tr>
                       <th *ngFor="let header of keyData" scope="col">{{header}}</th>
@@ -143,16 +114,9 @@
               </div> 
             </div>
           </div>
+        </section>
           <!-- Button trigger modal -->
               <dialog id="dialog">
-                <h2>Dettaglio.</h2>
-                <br><br>
-                <button class="btn"  ngbTooltip="Copiato !" triggers="click:blur" (click)="copyClipborad(detailData)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-                  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                </svg> Copia </button>
-               
-              <br><br> <br>
                 <table *ngIf="detailData != null" id="tableModal" class="table-resp" >
                   <thead>
                     <tr>
@@ -326,18 +290,13 @@
                     
                   </tbody>
                 </table><br>
-                
+
                 <div *ngIf="alert" id="alertSuccess" class="alert alert-success alert-dismissible fade show"  role="alert" >
                   {{alertMessage}}
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 </div>
                 <br>
-                <input  type="button"  id="myBtn" value="Scarica JSON" class="form-control" (click)="dowloadJson(detailData)" >
-                <br>
-                <input  type="button"  id="myBtn" value="Download CSV" class="form-control" (click)="downloadCsv(detailData)" >
-                <br>
-               
-                <input  type="button"  id="liveAlertPlaceholder" value="Aggiorna dati" class="form-control" (click)="updateData(detailData)">
+                <input  type="button"  id="liveAlertPlaceholder" value="Salva dati" class="form-control" (click)="updateData(detailData)">
                 <button onclick="window.dialog.close();" aria-label="close" class="x">❌</button>
               </dialog>
               <ng-template #content let-modal >

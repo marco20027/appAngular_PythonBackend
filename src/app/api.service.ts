@@ -47,7 +47,7 @@ export class ApiService {
         return this.http.delete(url,idDelete)
     }
 
-    insertData(data:object){
+    insertDataOnDb(data:object){
         let url = "http://localhost:8000/insertData"
         console.log(data)
         const headers = { 'content-type': 'application/json'}

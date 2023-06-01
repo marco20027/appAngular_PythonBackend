@@ -3,7 +3,7 @@ import { ApiService } from './api.service';
 import { Route, Router } from '@angular/router';
 import { ModalDismissReasons, NgbAlertConfig, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { mockJson } from './mockJson';
-import { empty } from 'rxjs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-root',
@@ -50,10 +50,21 @@ export class AppComponent {
   closeResult: any;
   getDismissReason: any;
   keysModalInsert :any;
+  spinner :boolean = false
 constructor (private user: ApiService,private router:Router,alertConfig: NgbAlertConfig,private modalService: NgbModal){
    
 }
 
+ngOnInit(){
+  this.user.viewList().subscribe(data => {
+    this.arrayData = data
+    let keys = Object.keys(this.arrayDataEdit)
+    this.keyData = keys
+    this.valueData = Object.values(this.arrayData)
+    console.log(this.valueData)
+   
+  })
+}
 
 open(content:any,id:any) {
     console.log(id)
@@ -82,21 +93,6 @@ onClickGetApi(){
   })
 }
 
-exportJson() {
-  this.user.viewList().subscribe(data => {
-    this.arrayData = data
-    this.valueModal2 = [this.arrayData[1]]
-    console.log(this.valueModal2)
-    let json = JSON.stringify(this.detailData)
-    console.log(json)
-    this.valueModal2.href = "valueModal2:application/json;charset=utf-8," + json
-  }) 
-}
-copyClipborad(item:any){
-   let jsonCopy = item
-   let jsonString = JSON.stringify(jsonCopy)
-   navigator.clipboard.writeText(jsonString)
-  }
 
 
 onClickDetail(item:any){
@@ -113,28 +109,7 @@ onClickDetail(item:any){
   console.log("end onClickDetail")
 }
 
-dowloadJson(item:any){
-  this.user.viewList().subscribe(data => {
-    this.arrayData = data
-    for (let i in this.valueData){
-      if(this.valueData == this.valueData[0])
-      this.valueData = ([this.valueData[i]])
-    }
-    let json = JSON.stringify(item)
-    console.log(json)
-    const datas = {
-    name: 'jsonFile',
-    url: json,
-    };
-    const jsonFile = new Blob([JSON.stringify(datas)]);
-    const downloadLink = document.createElement('a');
-    downloadLink.href = URL.createObjectURL(jsonFile);
-    downloadLink.download = 'demo.json';
-    downloadLink.click();
-    console.log(jsonFile)
-    
-}) 
-}
+
 
 updateData(dataJson:any ){
   let idCell:any = document.getElementById("saveId")?.textContent
@@ -227,9 +202,9 @@ updateData(dataJson:any ){
 
   console.log(JsonEdit)
   this.user.updateData(JsonEdit).subscribe(data =>{
-  console.log(data)
-  this.alert = true
   })
+  window.location.reload()
+
 
 }
 
@@ -238,7 +213,6 @@ updateData(dataJson:any ){
 
 deleteDataApi (data:any) {
   this.user.deleteData(data).subscribe(data=>{
-
     console.log(data)
     if(data != null){
       this.alertDelete = true
@@ -252,7 +226,7 @@ deleteDataApi (data:any) {
       this.modalService.dismissAll()
     }, 4000);
   })
-
+  window.location.reload()
 }
 
 
@@ -346,21 +320,13 @@ insertData() {
   console.log(JsonEdit)
   let values = Object.values(JsonEdit)
   console.log(values)
-  for (let x in values){
-    console.log(values[x])
-    if(values[x]==""){
-      console.log("error")
-      this.alertinsert = true
-    }else{
       this.alertinsertSuccess=true
-      this.user.insertData(JsonEdit).subscribe(data=>{
-        console.log(data)    
+      this.user.insertDataOnDb(JsonEdit).subscribe(data=>{
+        console.log(data)
       })
-    
-    }
-  }
-  
-}
+      window.location.reload()
+  }  
+
 
 openModalInsert(data:any) {
  this.keysModalInsert  = Object.keys(this.arrayDataEdit)

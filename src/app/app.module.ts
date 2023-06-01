@@ -7,6 +7,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { JsonEditComponent } from './json-edit/json-edit.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,8 @@ import { JsonEditComponent } from './json-edit/json-edit.component';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    BrowserAnimationsModule,   
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [],
