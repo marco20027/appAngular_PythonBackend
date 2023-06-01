@@ -3,8 +3,10 @@ import { ApiService } from './api.service';
 import { Route, Router } from '@angular/router';
 import { ModalDismissReasons, NgbAlertConfig, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { mockJson } from './mockJson';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { NgxSpinnerService } from 'ngx-spinner';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,7 +25,7 @@ export class AppComponent {
   valueModal1:any
   valueModal2:any
   valueModal3:any
-
+  valueCurrency: any 
   listaValue :any =  []
   listaValueTable:any = []
   listValueModal:any= []
@@ -31,6 +33,7 @@ export class AppComponent {
   detailData: any;
   detailId:any
   header : any
+  cell7:any
   selector: any;
   b: any;
   result : any
@@ -50,12 +53,15 @@ export class AppComponent {
   closeResult: any;
   getDismissReason: any;
   keysModalInsert :any;
-  spinner :boolean = false
-constructor (private user: ApiService,private router:Router,alertConfig: NgbAlertConfig,private modalService: NgbModal){
-   
+  typeSelected: any;
+  
+constructor (private user: ApiService,private router:Router,alertConfig: NgbAlertConfig,private modalService: NgbModal,private spinner: NgxSpinnerService){
+  this.typeSelected = 'ball-scale-multiple';
 }
 
 ngOnInit(){
+ 
+
   this.user.viewList().subscribe(data => {
     this.arrayData = data
     let keys = Object.keys(this.arrayDataEdit)
@@ -109,6 +115,10 @@ onClickDetail(item:any){
   console.log("end onClickDetail")
 }
 
+getSelectedValue(event:any){
+  this.cell7 = event.target.value
+  console.log(this.cell7);
+}
 
 
 updateData(dataJson:any ){
@@ -119,7 +129,6 @@ updateData(dataJson:any ){
   let cell4 : any = document.getElementById("save4")?.textContent
   let cell5 : any = document.getElementById("save5")?.textContent
   let cell6 : any = document.getElementById("save6")?.textContent
-  let cell7 : any = document.getElementById("save7")?.textContent
   let cell8 : any = document.getElementById("save8")?.textContent
   let cell9 : any = document.getElementById("save9")?.textContent
   let cell10 : any = document.getElementById("save10")?.textContent
@@ -152,8 +161,7 @@ updateData(dataJson:any ){
   let cell37 : any = document.getElementById("save37")?.textContent
   let cell38 : any = document.getElementById("save38")?.textContent
   let cell39 : any = document.getElementById("save39")?.textContent
-
- 
+  
   
    let  JsonEdit  = {
     "_id":idCell,
@@ -163,7 +171,7 @@ updateData(dataJson:any ){
     "MaturityDate": cell4,
     "IssuerName": cell5,
     "IssuerCode": cell6,
-    "Currency": cell7,
+    "Currency": this.cell7,
     "MarketCode":cell8,
     "AgentName": cell9,
     "SettledQty": cell10,
@@ -202,10 +210,9 @@ updateData(dataJson:any ){
 
   console.log(JsonEdit)
   this.user.updateData(JsonEdit).subscribe(data =>{
+    console.log(data)
   })
   window.location.reload()
-
-
 }
 
 
