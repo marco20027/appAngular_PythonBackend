@@ -306,7 +306,7 @@ insertData() {
     "Entity": cell1,
     "Isin": cell,
     "InstrumentName": cell2,
-    "MaturityDate": cell3,
+    "MaturityDate": this.cell4,
     "IssuerName": cell4,
     "IssuerCode": cell5,
     "Currency": cell6,
@@ -332,7 +332,8 @@ insertData() {
     "BBGLiquidityClassDate":cell26,
     "BBGLiquidityClass": cell27,
     "LRSNarrative": cell28,
-    "BloombergCode": cell29
+    "BloombergCode": cell29,
+    "Current6A6Value":""
 
   }
   console.log(JsonEdit)
@@ -342,12 +343,13 @@ insertData() {
       this.user.insertDataOnDb(JsonEdit).subscribe(data=>{
         console.log(data)
       })
-      window.location.reload()
+      //window.location.reload()
   }  
 
 
 openModalInsert(data:any) {
  this.keysModalInsert  = Object.keys(this.arrayDataEdit)
+ console.log(this.keysModalInsert)
 this.modalService.open(data,{ ariaLabelledBy: 'modal-basic-title' }).result.then(
   (result) => {
     this.closeResult = `Closed with: ${result}`;
