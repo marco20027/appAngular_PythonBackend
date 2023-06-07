@@ -172,8 +172,8 @@ updateData(dataJson:any ){
   let cell38 : any = document.getElementById("save38")?.textContent
   let cell39 : any = document.getElementById("save39")?.textContent
   
- 
-  
+ this.cell4 = Date.parse(this.cell4)
+console.log(this.cell4)  
    let  JsonEdit  = {
     "_id":idCell,
     "Entity": cell,
