@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { ApiService } from './api.service';
 import { Route, Router } from '@angular/router';
-import { ModalDismissReasons, NgbAlertConfig, NgbDatepickerModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbAlertConfig,  NgbModal, NgbDatepickerModule, NgbDateStruct  } from '@ng-bootstrap/ng-bootstrap';
 import { mockJson } from './mockJson';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -34,6 +36,7 @@ export class AppComponent {
   detailId:any
   header : any
   cell7:any
+  cell4:any
   selector: any;
   b: any;
   result : any
@@ -54,9 +57,11 @@ export class AppComponent {
   getDismissReason: any;
   keysModalInsert :any;
   typeSelected: any;
+  modelData!: NgbDateStruct;
   
 constructor (private user: ApiService,private router:Router,alertConfig: NgbAlertConfig,private modalService: NgbModal,private spinner: NgxSpinnerService){
   this.typeSelected = 'ball-scale-multiple';
+
 }
 
 ngOnInit(){
@@ -67,7 +72,8 @@ ngOnInit(){
     let keys = Object.keys(this.arrayDataEdit)
     this.keyData = keys
     this.valueData = Object.values(this.arrayData)
-    console.log(this.valueData)
+    console.log(this.valueData[0].MaturityDate)
+  
    
   })
 }
@@ -119,6 +125,10 @@ getSelectedValue(event:any){
   this.cell7 = event.target.value
   console.log(this.cell7);
 }
+getDataSelectedValue(event:any){
+  this.cell4 = event.target.value
+  console.log(this.cell4)
+}
 
 
 updateData(dataJson:any ){
@@ -162,13 +172,14 @@ updateData(dataJson:any ){
   let cell38 : any = document.getElementById("save38")?.textContent
   let cell39 : any = document.getElementById("save39")?.textContent
   
+ 
   
    let  JsonEdit  = {
     "_id":idCell,
     "Entity": cell,
     "Isin": cell2,
     "InstrumentName": cell3,
-    "MaturityDate": cell4,
+    "MaturityDate": this.cell4,
     "IssuerName": cell5,
     "IssuerCode": cell6,
     "Currency": this.cell7,
@@ -208,11 +219,11 @@ updateData(dataJson:any ){
   }
   dataJson = JsonEdit
 
-  console.log(JsonEdit)
+  console.log(this.cell4)
   this.user.updateData(JsonEdit).subscribe(data =>{
     console.log(data)
   })
-  window.location.reload()
+  //window.location.reload()
 }
 
 
