@@ -20,12 +20,10 @@ export class ApiService {
 
     viewList() {
         let url = "http://localhost:8000/returnCollection"
-        console.log(url)
         return this.http.get(url)
     }
     
     updateData(data:any){
-        console.log(data._id)
         const id = data._id
         let url = "http://localhost:8000/updateData/" + id
         const headers = { 'content-type': 'application/json'}
@@ -36,20 +34,17 @@ export class ApiService {
         let dataid = Object.values(valueId)
         const id = dataid[0]
         let url = "http://localhost:8000/data/"+id
-        console.log(valueId)
         return this.http.get(url)
     }
 
     deleteData(data:any){
         const idDelete = data
         let url = "http://localhost:8000/deleteData/" + idDelete
-        console.log(data)
         return this.http.delete(url,idDelete)
     }
 
     insertDataOnDb(data:object){
         let url = "http://localhost:8000/insertData"
-        console.log(data)
         const headers = { 'content-type': 'application/json'}
         return this.http.post(url,data,{'headers':headers} )
 
