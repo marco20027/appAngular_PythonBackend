@@ -72,21 +72,18 @@ ngOnInit(){
     let keys = Object.keys(this.arrayDataEdit)
     this.keyData = keys
     this.valueData = Object.values(this.arrayData)
-    console.log(this.valueData[0].MaturityDate)
   
    
   })
 }
 
 open(content:any,id:any) {
-    console.log(id)
   this.detailData = id
   this.modalService.open(content,{ ariaLabelledBy: 'modal-basic-title' }).result.then(
     (result) => {
       this.closeResult = `Closed with: ${result}`;
     },
     (reason) => {
-      console.log(reason)
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     },
   ); 
@@ -100,7 +97,6 @@ onClickGetApi(){
     let keys = Object.keys(this.arrayDataEdit)
     this.keyData = keys
     this.valueData = Object.values(this.arrayData)
-    console.log(this.valueData)
    
   })
 }
@@ -108,26 +104,20 @@ onClickGetApi(){
 
 
 onClickDetail(item:any){
-  console.log("start onClickDetail")
-  console.log(item)
+
   this.api.getElement(item).subscribe(data => {
-    console.log(data)
     this.detailId = data
     this.detailData = item;
-    console.log("contenuto dettaglio" +this.detailData)
 
   })
   this.detailData = item;
-  console.log("end onClickDetail")
 }
 
 getSelectedValue(event:any){
   this.cell7 = event.target.value
-  console.log(this.cell7);
 }
 getDataSelectedValue(event:any){
   this.cell4 = event.target.value
-  console.log(this.cell4)
 }
 
 
@@ -173,7 +163,6 @@ updateData(dataJson:any ){
   let cell39 : any = document.getElementById("save39")?.textContent
   
  this.cell4 = Date.parse(this.cell4)
-console.log(this.cell4)  
    let  JsonEdit  = {
     "_id":idCell,
     "Entity": cell,
@@ -219,7 +208,6 @@ console.log(this.cell4)
   }
   dataJson = JsonEdit
 
-  console.log(this.cell4)
   this.api.updateData(JsonEdit).subscribe(data =>{
     console.log(data)
   })
@@ -231,7 +219,6 @@ console.log(this.cell4)
 
 deleteDataApi (data:any) {
   this.api.deleteData(data).subscribe(data=>{
-    console.log(data)
     if(data != null){
       this.alertDelete = true
       setTimeout(() => {
@@ -249,19 +236,15 @@ deleteDataApi (data:any) {
 
 
 downloadCsv(item:any){
-  console.log(item)
   let fileName = "download.csv";
   const data = item;
   let csv = new Blob([data[0]], {
     type: "application/octet-stream",
     
   });
-  console.log(csv)
   const link = document.createElement("a");
   link.href = URL.createObjectURL(csv);
-  console.log(link)
   document.body.appendChild(link);
-  console.log(document.body.appendChild(link));
   link.download = fileName;
   link.click();
 }
@@ -336,9 +319,7 @@ insertData() {
     "Current6A6Value":""
 
   }
-  console.log(JsonEdit)
   let values = Object.values(JsonEdit)
-  console.log(values)
       this.alertinsertSuccess=true
       this.api.insertDataOnDb(JsonEdit).subscribe(data=>{
         console.log(data)
@@ -349,13 +330,11 @@ insertData() {
 
 openModalInsert(data:any) {
  this.keysModalInsert  = Object.keys(this.arrayDataEdit)
- console.log(this.keysModalInsert)
 this.modalService.open(data,{ ariaLabelledBy: 'modal-basic-title' }).result.then(
   (result) => {
     this.closeResult = `Closed with: ${result}`;
   },
   (reason) => {
-    console.log(reason)
     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
   },
 ); 
