@@ -10318,7 +10318,7 @@ textarea.form-control-lg {
     float: left !important;
   }
   .float-xxl-end {
-    float: right !important;
+    float: right !important; 
   }
   .float-xxl-none {
     float: none !important;
