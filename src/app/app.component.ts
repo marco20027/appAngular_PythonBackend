@@ -101,14 +101,10 @@ onClickGetApi(){
   })
 }
 
-
-
 onClickDetail(item:any){
-
   this.api.getElement(item).subscribe(data => {
     this.detailId = data
     this.detailData = item;
-
   })
   this.detailData = item;
 }
@@ -119,7 +115,6 @@ getSelectedValue(event:any){
 getDataSelectedValue(event:any){
   this.cell4 = event.target.value
 }
-
 
 updateData(dataJson:any ){
   let idCell:any = document.getElementById("saveId")?.textContent
@@ -213,9 +208,6 @@ updateData(dataJson:any ){
   })
   //window.location.reload()
 }
-
-
-
 
 deleteDataApi (data:any) {
   this.api.deleteData(data).subscribe(data=>{
