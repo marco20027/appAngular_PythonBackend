@@ -59,7 +59,7 @@ export class AppComponent {
   typeSelected: any;
   modelData!: NgbDateStruct;
   
-constructor (private user: ApiService,private router:Router,alertConfig: NgbAlertConfig,private modalService: NgbModal,private spinner: NgxSpinnerService){
+constructor (private api: ApiService,private router:Router,alertConfig: NgbAlertConfig,private modalService: NgbModal,private spinner: NgxSpinnerService){
   this.typeSelected = 'ball-scale-multiple';
 
 }
@@ -67,7 +67,7 @@ constructor (private user: ApiService,private router:Router,alertConfig: NgbAler
 ngOnInit(){
  
 
-  this.user.viewList().subscribe(data => {
+  this.api.viewList().subscribe(data => {
     this.arrayData = data
     let keys = Object.keys(this.arrayDataEdit)
     this.keyData = keys
@@ -95,7 +95,7 @@ open(content:any,id:any) {
 
 
 onClickGetApi(){
-  this.user.viewList().subscribe(data => {
+  this.api.viewList().subscribe(data => {
     this.arrayData = data
     let keys = Object.keys(this.arrayDataEdit)
     this.keyData = keys
@@ -110,7 +110,7 @@ onClickGetApi(){
 onClickDetail(item:any){
   console.log("start onClickDetail")
   console.log(item)
-  this.user.getElement(item).subscribe(data => {
+  this.api.getElement(item).subscribe(data => {
     console.log(data)
     this.detailId = data
     this.detailData = item;
@@ -220,7 +220,7 @@ console.log(this.cell4)
   dataJson = JsonEdit
 
   console.log(this.cell4)
-  this.user.updateData(JsonEdit).subscribe(data =>{
+  this.api.updateData(JsonEdit).subscribe(data =>{
     console.log(data)
   })
   //window.location.reload()
@@ -230,7 +230,7 @@ console.log(this.cell4)
 
 
 deleteDataApi (data:any) {
-  this.user.deleteData(data).subscribe(data=>{
+  this.api.deleteData(data).subscribe(data=>{
     console.log(data)
     if(data != null){
       this.alertDelete = true
@@ -340,7 +340,7 @@ insertData() {
   let values = Object.values(JsonEdit)
   console.log(values)
       this.alertinsertSuccess=true
-      this.user.insertDataOnDb(JsonEdit).subscribe(data=>{
+      this.api.insertDataOnDb(JsonEdit).subscribe(data=>{
         console.log(data)
       })
       //window.location.reload()
