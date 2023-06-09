@@ -66,13 +66,12 @@ constructor (private api: ApiService , private modalService: NgbModal){
 
 ngOnInit(){
  
-
   this.api.viewList().subscribe(data => {
     this.arrayData = data
     let keys = Object.keys(this.arrayDataEdit)
     this.keyData = keys
     this.valueData = Object.values(this.arrayData)
-  
+    console.log(this.arrayData)
    
   })
 }
