@@ -311,7 +311,6 @@ insertData() {
     "Current6A6Value":""
 
   }
-  let values = Object.values(JsonEdit)
       this.alertinsertSuccess=true
       this.api.insertDataOnDb(JsonEdit).subscribe(data=>{
         console.log(data)
