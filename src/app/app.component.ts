@@ -324,10 +324,12 @@ openModalInsert(data:any) {
  this.keysModalInsert  = Object.keys(this.arrayDataEdit)
 this.modalService.open(data,{ ariaLabelledBy: 'modal-basic-title' }).result.then(
   (result) => {
+    console.log(result)
     this.closeResult = `Closed with: ${result}`;
   },
   (reason) => {
-    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    console.log(reason)
+    //this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
   },
 ); 
 }
