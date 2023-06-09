@@ -59,7 +59,7 @@ export class AppComponent {
   typeSelected: any;
   modelData!: NgbDateStruct;
   
-constructor (private api: ApiService,private router:Router,alertConfig: NgbAlertConfig,private modalService: NgbModal,private spinner: NgxSpinnerService){
+constructor (private api: ApiService , private modalService: NgbModal){
   this.typeSelected = 'ball-scale-multiple';
 
 }
