@@ -318,7 +318,6 @@ insertData() {
       //window.location.reload()
   }  
 
-
 openModalInsert(data:any) {
  this.keysModalInsert  = Object.keys(this.arrayDataEdit)
 this.modalService.open(data,{ ariaLabelledBy: 'modal-basic-title' }).result.then(
