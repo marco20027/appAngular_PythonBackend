@@ -17,7 +17,6 @@ const httpOptions = {
 export class ApiService {
     constructor(private http:HttpClient) { }
     
-
     viewList() {
         let url = "http://localhost:8000/returnCollection"
         return this.http.get(url)
@@ -28,8 +27,8 @@ export class ApiService {
         let url = "http://localhost:8000/updateData/" + id
         const headers = { 'content-type': 'application/json'}
         return this.http.post(url,data, {'headers':headers})
-
         }
+    
     getElement(valueId: string){
         let dataid = Object.values(valueId)
         const id = dataid[0]
